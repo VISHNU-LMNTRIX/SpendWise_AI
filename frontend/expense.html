@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense List</title>
+    <link rel="stylesheet" href="expense.css">
+    <script defer src="expense.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div id="expensesList">
+            <section class="expenses">
+                <h1>Expense List</h1>
+                <div class="input">
+                    <input type="text" class="input-field" id="productInput" placeholder="Enter product name">
+                    <input type="text" id="priceInput" class="input-field" placeholder="Enter the price">
+                    <button class="btn">Add</button>
+                </div>
+                <ul class="scroll">
+                    <li id="expenseList"></li>
+                </ul>
+                <div>
+                    <hr class="counter">
+                    <div class="counter-container">
+                        <p><span id="expenseCount">0</span> items total</p>
+                        <button id="deleteButton">Delete All</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="sidebar">
+            <h1>Assistant</h1>
+            <div id="assistant">
+                <!-- Conversation div -->
+                <div id="results">
+        
+                </div>
+                <!-- Prompt div -->
+                <div id="promptDiv">
+                    <textarea name="prompt" id="prompt" rows="1" placeholder="Enter your prompt..."></textarea>
+                    <button type="submit" id="askButton">Ask</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
