@@ -119,8 +119,6 @@ h1 {
     border: none;
 }
 
-/* Todo Container */
-
 .purchases {
     display: flex;
     flex-direction: column;
