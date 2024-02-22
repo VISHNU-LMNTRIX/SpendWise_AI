@@ -1,8 +1,8 @@
-// Retrieve todo from local storage or initialize an empty array
-let todo = JSON.parse(localStorage.getItem("todo")) || [];
-const todoInput = document.getElementById("todoInput");
-const todoList = document.getElementById("todoList");
-const todoCount = document.getElementById("todoCount");
+// Retrieve Items from local storage or initialize an empty array
+let purchases = JSON.parse(localStorage.getItem("purchases")) || [];
+const purchaseInput = document.getElementById("purchaseInput");
+const purchaseList = document.getElementById("purchaseList");
+const purchaseCount = document.getElementById("purchaseCount");
 const addButton = document.querySelector(".btn");
 const deleteButton = document.getElementById("deleteButton");
 let prompt = document.getElementById("prompt");
@@ -11,88 +11,88 @@ let results = document.getElementById("results");
 
 // Initialize
 document.addEventListener("DOMContentLoaded", function () {
-    addButton.addEventListener("click", addTask);
-    todoInput.addEventListener("keydown", function (event) {
+    addButton.addEventListener("click", addItem);
+    purchaseInput.addEventListener("keydown", function (event) {
       if (event.key === "Enter") {
         event.preventDefault(); // Prevents default Enter key behavior
-        addTask();
+        addItem();
       }
     });
-    deleteButton.addEventListener("click", deleteAllTasks);
-    displayTasks();
+    deleteButton.addEventListener("click", deleteAllItems);
+    displayItems();
 });
 
-function addTask() {
-    const newTask = todoInput.value.trim();
-    if (newTask !== "") {
-      todo.push({ text: newTask, disabled: false });
+function addItem() {
+    const newItem = purchaseInput.value.trim();
+    if (newItem !== "") {
+      purchases.push({ text: newItem, disabled: false });
       saveToLocalStorage();
-      todoInput.value = "";
-      displayTasks();
+      purchaseInput.value = "";
+      displayItems();
     }
 }
 
-function displayTasks() {
-    todoList.innerHTML = "";
-    todo.forEach((item, index) => {
+function displayItems() {
+    purchaseList.innerHTML = "";
+    purchases.forEach((item, index) => {
       const p = document.createElement("p");
       p.innerHTML = `
-        <div class="todo-container">
-          <input type="checkbox" class="todo-checkbox" id="input-${index}" ${
+        <div class="purchase-container">
+          <input type="checkbox" class="purchase-checkbox" id="input-${index}" ${
         item.disabled ? "checked" : ""
       }>
-          <p id="todo-${index}" class="${
+          <p id="purchase-${index}" class="${
         item.disabled ? "disabled" : ""
-      }" onclick="editTask(${index})">${item.text}</p>
+      }" onclick="editItem(${index})">${item.text}</p>
         </div>
       `;
-      p.querySelector(".todo-checkbox").addEventListener("change", () =>
-        toggleTask(index)
+      p.querySelector(".purchase-checkbox").addEventListener("change", () =>
+        toggleItem(index)
       );
-      todoList.appendChild(p);
+      purchaseList.appendChild(p);
     });
-    todoCount.textContent = todo.length;
+    purchaseCount.textContent = purchases.length;
 }
 
-function editTask(index) {
-    const todoItem = document.getElementById(`todo-${index}`);
-    const existingText = todo[index].text;
+function editItem(index) {
+    const purchaseItem = document.getElementById(`purchases-${index}`);
+    const existingText = purchases[index].text;
     const inputElement = document.createElement("input");
   
     inputElement.value = existingText;
-    todoItem.replaceWith(inputElement);
+    purchaseItem.replaceWith(inputElement);
     inputElement.focus();
   
     inputElement.addEventListener("blur", function () {
       const updatedText = inputElement.value.trim();
       if (updatedText) {
-        todo[index].text = updatedText;
+        purchases[index].text = updatedText;
         saveToLocalStorage();
       }
-      displayTasks();
+      displayItems();
     });
 }
   
-function toggleTask(index) {
-    todo[index].disabled = !todo[index].disabled;
+function toggleItem(index) {
+    purchases[index].disabled = !purchases[index].disabled;
     saveToLocalStorage();
-    displayTasks();
+    displayItems();
 }
   
-function deleteAllTasks() {
-    todo = [];
+function deleteAllItems() {
+    purchases = [];
     saveToLocalStorage();
-    displayTasks();
+    displayItems();
 }
   
 function saveToLocalStorage() {
-    localStorage.setItem("todo", JSON.stringify(todo));
+    localStorage.setItem("purchases", JSON.stringify(purchases));
 }
 
 
 askButton.addEventListener("click",async()=>{
     // Filter items with disabled === false
-    let filteredItems = todo.filter(item => !item.disabled);
+    let filteredItems = purchases.filter(item => !item.disabled);
 
     // Extract the text values
     let textValues = filteredItems.map(item => item.text);

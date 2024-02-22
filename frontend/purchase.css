@@ -30,7 +30,7 @@ h1 {
     height: 100vh;
 }
 
-#purchaseList {
+#purchasesList {
     width: 72%;
     height: 100%;
     margin: 0px;
@@ -104,10 +104,6 @@ h1 {
     height: auto;
 }
 
-/* #purchaseListItems {
-    box-sizing: border-box;
-} */
-
 .btn {
     position: absolute;
     right: 0.5rem;
@@ -125,7 +121,7 @@ h1 {
 
 /* Todo Container */
 
-.todo {
+.purchases {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -155,7 +151,7 @@ input[type="text"]::placeholder {
     color: var(--grey);
 }
 
-.todo-container {
+.purchase-container {
     display: flex;
 }
 
@@ -169,14 +165,14 @@ li {
     flex-direction: column;
 }
 
-#todoList p {
+#purchaseList p {
     display: flex;
     color: var(--dark);
     align-items: center;
     margin: 7px 10px;
 }
   
-#todoList .disabled {
+#purchaseList .disabled {
     color: #8f98a8;
 }
   
